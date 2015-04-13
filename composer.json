@@ -1,0 +1,35 @@
+{
+    "name": "webmotor/o-apigility",
+    "description": "Apiglity compatiblity layer",
+    "type": "library",
+    "keywords": [],
+    "minimum-stability": "dev",
+    "homepage": "https://github.com/oprokidnev/OApigility",
+    "authors": [
+        {
+            "name": "Andrey Oprokidnev",
+            "email": "oprokidnev@webmotor.ru",
+            "homepage": "http://webmotor.ru/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.3",
+        "zendframework/zendframework": "~2.3",
+        "doctrine/doctrine-module": ">=0.8",
+        "zfcampus/zf-apigility": "~1.0",
+        "zfcampus/zf-apigility-doctrine": "~0.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "OApigility\\": "src/OApigility"
+        }
+    },
+    "suggest": {
+        "bjyoungblood/bjy-authorize": "For uthorized access features."
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
