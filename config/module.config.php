@@ -46,6 +46,17 @@ return array(
         'allow_implicit' => true, // default (set to true when you need to support browser-based or mobile apps)
         'access_lifetime' => 36000, // default (set a value in seconds for access tokens lifetime)
         'enforce_state' => true, // default
+        'storage' => 'OApigility\\OAuth2Adapter\\Database',
+    ),
+    'o-apigility'=>array(
+        'OApigility\\OAuth2\\Chain'=>[
+            'adapters'=>[
+                'OApigility\\OAuth2\\Database'=>[
+                    
+                ],
+                'OApigility\\OAuth2\\Database'
+            ],
+        ],
     ),
     'bjyauthorize' => array(
         'guards' => array(
@@ -80,16 +91,23 @@ return array(
     'service_manager' => [
         'invokables' => [
             \OApigility\Hydrator\Formatter\GroupFormatter::class => \OApigility\Hydrator\Formatter\GroupFormatter::class,
-//            \OApigility\Controller\RedirectCallback::class=> \OApigility\Controller\RedirectCallback::class,
+            \OApigility\Hydrator\Strategy\JsonNamingStrategy::class => \OApigility\Hydrator\Strategy\JsonNamingStrategy::class,
+            \OApigility\Hydrator\Formatter\CircularFormatter::class => \OApigility\Hydrator\Formatter\CircularFormatter::class,
+            \OApigility\Hydrator\Formatter\DateTimeFormatter::class => \OApigility\Hydrator\Formatter\DateTimeFormatter::class,
+            \OApigility\Hydrator\Formatter\EmbeddedFormatter::class => \OApigility\Hydrator\Formatter\EmbeddedFormatter::class,
+            \OApigility\Hydrator\Filter\AnnotationFilter::class => \OApigility\Hydrator\Filter\AnnotationFilter::class,
         ],
-        'aliases'=>[
-//            'zfcuser_redirect_callback'=>\OApigility\Controller\RedirectCallback::class
+        'aliases' => [
+        ],
+        'factories'=>[
+            'OApigility\\OAuth2Adapter\\Chain' => 'OApigility\\OAuth2Adapter\\ChainFactory',
+            'OApigility\\OAuth2Adapter\\Database' => 'OApigility\\OAuth2Adapter\\DatabaseFactory',
         ],
         'shared' => [
 //\OApigility\Hydrator\Formatter\EmbeddedFormatter::class => true,
         ],
     ],
-    'wm-apigility' => [
+    'o-apigility' => [
         'apigility_doctrine_hydrator' => [
             'naming_strategy' => \OApigility\Hydrator\Strategy\JsonNamingStrategy::class,
             'formatters' => [
@@ -109,6 +127,11 @@ return array(
             'oauth' => array(
                 'options' => array(
                     'route' => '/oauth',
+                ),
+            ),
+            'zf-apigility' => array(
+                'options' => array(
+                    'route' => '/apigility',
                 ),
             ),
         ),

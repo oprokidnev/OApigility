@@ -10,9 +10,15 @@ use Zend\Session\SessionManager;
 use Zend\Session\Container;
 use OApigility\Hydrator\JmsSerializerHydrator;
 
-class Module implements \Zend\ModuleManager\Feature\ServiceProviderInterface
+class Module
 {
-
+    /**
+     * {@inheritDoc}
+     */
+    public function getConfig()
+    {
+        return require dirname(dirname(__DIR__ )). '/config/module.config.php';
+    }
     /**
      * 
      * @return string
@@ -62,7 +68,7 @@ class Module implements \Zend\ModuleManager\Feature\ServiceProviderInterface
     public function onBootstrap(MvcEvent $event)
     {
         $serizlierManager = \Zend\Serializer\Serializer::getAdapterPluginManager();
-        $serizlierConfig  = $event->getApplication()->getServiceManager()->get('Config')['wm-apigility'];
+        $serizlierConfig  = $event->getApplication()->getServiceManager()->get('Config')['o-apigility'];
 
 
         if (isset($_SERVER['REQUEST_URI'])) {

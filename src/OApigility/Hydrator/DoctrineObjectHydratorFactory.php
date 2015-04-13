@@ -31,7 +31,7 @@ class DoctrineObjectHydratorFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $serviceLocator = $serviceLocator->getServiceLocator();
-        $options       = (array) @$serviceLocator->get('Config')['wm-apigility']['apigility_doctrine_hydrator'];
+        $options       = (array) @$serviceLocator->get('Config')['o-apigility']['apigility_doctrine_hydrator'];
         
         $namingStrategy = isset($options['naming_strategy']) ? $options['naming_strategy'] : null;
         if ($namingStrategy !== null) {
